@@ -1,17 +1,48 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="utf-8">
-<title>Esempio di lavagna con Post It</title>
-<meta name="description" content="Creazione di una lavagna con post animati al rollover">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="reset.css">
-<link rel="stylesheet" href="postit.css">
+  <meta charset="utf-8" />
+  <title>Lavagna con Post-it</title>
+  <meta name="description" content="Lavagna con post-it che si animano al passaggio del mouse" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="postit.css" />
 </head>
-
 <body>
+  <main class="wrap">
+    <h1 class="sr-only">Lavagna con Post-it</h1>
 
+    <section class="board" aria-label="Post-it con comportamento base">
+      <!-- riga 1 -->
+      <article class="note yellow" style="--rot:-6deg; --delay:.05s;">
+        <h3>Task #1</h3><p>Creare i postit</p>
+      </article>
+      <article class="note green" style="--rot:-3deg; --delay:.25s;">
+        <h3>Task #2</h3><p>Colorarli</p>
+      </article>
+      <article class="note purple" style="--rot:4deg; --delay:.15s;">
+        <h3>Task #3</h3><p>Affiancarli</p>
+      </article>
+      <article class="note green" style="--rot:7deg; --delay:.4s;">
+        <h3>Task #4</h3><p>Spaziarli</p>
+      </article>
+
+      <!-- riga 2 -->
+      <article class="note yellow" style="--rot:-5deg; --delay:.55s;">
+        <h3>Task #5</h3><p>Ombreggiarli</p>
+      </article>
+      <article class="note purple" style="--rot:-8deg; --delay:.8s;">
+        <h3>Task #6</h3><p>Ruotarli</p>
+      </article>
+      <article class="note yellow" style="--rot:3deg; --delay:.7s;">
+        <h3>Task #7</h3><p>Animarli</p>
+      </article>
+      <article class="note green" style="--rot:8deg; --delay:1s;">
+        <h3>Task #8</h3><p>Testarli</p>
+      </article>
+    </section>
+
+    <p class="caption">Post-it con comportamento base • Passa col mouse per vedere l’effetto</p>
+  </main>
 </body>
 </html>

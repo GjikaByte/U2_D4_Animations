@@ -1,0 +1,155 @@
+/* ---------- BASE ---------- */
+body{
+  font-family: 'Indie Flower', system-ui, sans-serif;
+  background:#fff;
+  color:#1f1b20;
+}
+
+.wrap{
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.sr-only{
+  position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+.caption{
+  text-align:center;
+  margin-top:14px;
+  color:#222;
+  opacity:.75;
+  font-size:1.05rem;
+}
+
+/* ---------- LAVAGNA ---------- */
+.board{
+  background: #595959;
+  border-radius: 6px;
+  padding: 26px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px 22px;
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(0,0,0,.15) inset;
+}
+
+/* ---------- POST-IT ---------- */
+.note{
+  --delay: 0s;                  /* ritardo animazione */
+  width: 190px;
+  height: 160px;
+  padding: 16px 14px 18px;
+  border-radius: 4px;
+  color:#222;
+  position: relative;
+  transform: rotate();
+  transform-origin: 50% 10%;
+  box-shadow:
+    0 16px 10px -10px rgba(0,0,0,.35),
+    0 2px 0 rgba(0,0,0,.05) inset;
+  transition: transform .35s cubic-bezier(.2,.6,.2,1),
+              box-shadow .35s ease,
+              filter .35s ease;
+  /* comparsa “schiacciata” (EXTRA) */
+  animation: splat .55s cubic-bezier(.2,.65,.25,1.35) both;
+  animation-delay: var(--delay);
+}
+
+/* bordo più scuro in basso, luce in alto */
+.note::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(to bottom, rgba(255,255,255,.45), transparent 30%),
+              radial-gradient(120% 80% at 50% 120%, rgba(0,0,0,.25), transparent 50%);
+  mix-blend-mode: multiply;
+  border-radius: 4px;
+  pointer-events:none;
+}
+
+/* Varianti colore */
+.note.yellow{
+  background: linear-gradient(#fff7a6, #f2ee9a 55%, #dfe8b8);
+}
+.note.green{
+  background: linear-gradient(#c9f0cf, #bde6c7 60%, #a9d8b8);
+}
+.note.purple{
+  background: linear-gradient(#cdd0ff, #c0c5f8 58%, #b5b9e9);
+}
+
+/* Titoli e testo */
+.note h3{
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: .5px;
+  margin-bottom: 6px;
+  text-shadow: 0 1px 0 rgba(255,255,255,.6),
+               0 1px 2px rgba(0,0,0,.15);
+}
+.note p{
+  font-size: 18px;
+  opacity: .9;
+}
+
+.board .note:nth-child(1){ transform: rotate(6deg); }
+.board .note:nth-child(2){ transform: rotate(-3deg); }
+.board .note:nth-child(3){ transform: rotate(4deg); }
+.board .note:nth-child(4){ transform: rotate(7deg); }
+.board .note:nth-child(5){ transform: rotate(-5deg); }
+.board .note:nth-child(6){ transform: rotate(-8deg); }
+.board .note:nth-child(7){ transform: rotate(3deg); }
+.board .note:nth-child(8){ transform: rotate(8deg); }
+    
+/* Effetto hover: il post-it “cresce”, si raddrizza e si alza */
+.board .note:nth-child(1):hover{ transform: rotate(6deg) scale(1.12) translateY(-4px); z-index:10; box-shadow:
+    0 28px 26px -10px rgba(0,0,0,.55),
+    0 2px 0 rgba(0,0,0,.05) inset; }
+.board .note:nth-child(2):hover{ transform: rotate(-3deg) scale(1.12) translateY(-4px); z-index:10; box-shadow:
+    0 28px 26px -10px rgba(0,0,0,.55),
+    0 2px 0 rgba(0,0,0,.05) inset; }
+.board .note:nth-child(3):hover{ transform: rotate(4deg) scale(1.12) translateY(-4px); z-index:10; box-shadow:
+    0 28px 26px -10px rgba(0,0,0,.55),
+    0 2px 0 rgba(0,0,0,.05) inset; }
+.board .note:nth-child(4):hover{ transform: rotate(7deg) scale(1.12) translateY(-4px); z-index:10; box-shadow:
+    0 28px 26px -10px rgba(0,0,0,.55),
+    0 2px 0 rgba(0,0,0,.05) inset; }
+.board .note:nth-child(5):hover{ transform: rotate(-5deg) scale(1.12) translateY(-4px); z-index:10; box-shadow:
+    0 28px 26px -10px rgba(0,0,0,.55),
+    0 2px 0 rgba(0,0,0,.05) inset; }
+.board .note:nth-child(6):hover{ transform: rotate(-8deg) scale(1.12) translateY(-4px); z-index:10; box-shadow:
+    0 28px 26px -10px rgba(0,0,0,.55),
+    0 2px 0 rgba(0,0,0,.05) inset; }
+.board .note:nth-child(7):hover{ transform: rotate(3deg) scale(1.12) translateY(-4px); z-index:10; box-shadow:
+    0 28px 26px -10px rgba(0,0,0,.55),
+    0 2px 0 rgba(0,0,0,.05) inset; }
+.board .note:nth-child(8):hover{ transform: rotate(8deg) scale(1.12) translateY(-4px); z-index:10; box-shadow:
+    0 28px 26px -10px rgba(0,0,0,.55),
+    0 2px 0 rgba(0,0,0,.05) inset; }
+
+
+/* Quando si passa sulla lavagna, gli altri si sfuocano leggermente */
+.board:hover .note:not(:hover){
+  filter: blur(1px) brightness(.95);
+  transform: rotate() scale(.56);
+}
+
+/* ---------- ANIMAZIONE DI INGRESSO (EXTRA) ---------- */
+@keyframes splat{
+  0%   { transform: translateY(-24px) rotate(calc( -80deg)) scale(.82); opacity: 0; }
+  60%  { transform: translateY(6px)   rotate(calc( +2deg)) scale(1.06); opacity: 1; }
+  100% { transform: translateY(0)     rotate()              scale(1); }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 980px){
+  .board{ grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 720px){
+  .board{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px){
+  .board{ grid-template-columns: 1fr; place-items:center; }
+  .note{ width: 86%; max-width: 320px; }
+}
